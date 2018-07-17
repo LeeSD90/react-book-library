@@ -1,4 +1,5 @@
 import React from 'react';
+import './NewBookForm.css'
 
 const Form = () => (
   <form id="new-book">
@@ -44,7 +45,7 @@ class NewBookForm extends React.Component {
 
   render() {
     return (
-      <div className="col-12">
+      <div className="new-book-form">
         <button className="btn btn-primary" onClick={this.toggleForm.bind(this)}>New Book</button>
         {!this.state.formHidden && <Form />}
       </div>

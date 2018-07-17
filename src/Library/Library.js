@@ -1,11 +1,18 @@
 import React from 'react';
-import NewBookForm from '../NewBookForm/NewBookForm';
+
+class LibraryHeader extends React.Component {
+  render(){
+    return (
+      true
+    );
+  }
+}
 
 class Library extends React.Component {
   render(){
     return (
       <div className="container">
-        <NewBookForm />
+        
       </div>
     );
   }
