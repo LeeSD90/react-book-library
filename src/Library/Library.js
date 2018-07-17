@@ -1,8 +1,13 @@
 import React from 'react';
+import NewBookForm from '../NewBookForm/NewBookForm';
 
 class Library extends React.Component {
   render(){
-    return ("Hello");
+    return (
+      <div className="container">
+        <NewBookForm />
+      </div>
+    );
   }
 }
 
