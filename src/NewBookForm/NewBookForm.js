@@ -9,8 +9,9 @@ class Form extends React.Component {
       title : form.querySelector("#input-title").value,
       author : form.querySelector("#input-author").value,
       pages : form.querySelector("#input-pages").value,
-      read : form.querySelector("#input-read").value
+      read : form.querySelector("#input-read").checked
     }
+    console.log(book.read);
     this.props.addBook(book);
     e.preventDefault();
   }

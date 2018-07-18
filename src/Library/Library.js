@@ -5,15 +5,15 @@ class LibraryRow extends React.Component {
   render() {
     const title = this.props.title;
     const author = this.props.author;
-    const read = this.props.read;
+    const read = this.props.read ? "Yes" : "No";
     const pages = this.props.pages;
 
     return (
       <tr>
         <td>{title}</td>
         <td>{author}</td>
-        <td>{read}</td>
         <td>{pages}</td>
+        <td>{read}</td>
         <td><a href="#"><i className="fas fa-trash"></i></a></td>
       </tr>
     );
