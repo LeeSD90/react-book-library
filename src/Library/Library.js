@@ -63,7 +63,7 @@ class LibraryHeader extends React.Component {
 class LibraryTable extends React.Component {
   render() {
     return (
-      <div className="col-8">
+      <div className="col-8 centered">
         <table className="table">
           <LibraryHeader />
           <LibraryBody books={this.props.books}/>

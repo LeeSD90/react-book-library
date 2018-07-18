@@ -7,3 +7,8 @@ body {
 .container {
   margin-top: 20px;
 }
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
