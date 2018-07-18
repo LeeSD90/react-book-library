@@ -1,50 +1,6 @@
 import React from 'react';
 import NewBookForm from '../NewBookForm/NewBookForm';
 
-class LibraryRow extends React.Component {
-  render() {
-    const title = this.props.title;
-    const author = this.props.author;
-    const read = this.props.read ? "Yes" : "No";
-    const pages = this.props.pages;
-
-    return (
-      <tr>
-        <td>{title}</td>
-        <td>{author}</td>
-        <td>{pages}</td>
-        <td>{read}</td>
-        <td><a href="#"><i className="fas fa-trash"></i></a></td>
-      </tr>
-    );
-  }
-}
-
-class LibraryBody extends React.Component {
-  render() {
-    const rows = [];
-
-    if(this.props.books !== undefined && this.props.books !== null){
-      this.props.books.forEach((book, index) => {
-        rows.push(
-          <LibraryRow
-            key={index.toString()}
-            title={book.title}
-            author={book.author}
-            pages={book.pages} 
-            read={book.read} />
-        );
-      });
-    }
-
-    return (
-      <tbody id="items">
-        {rows}
-      </tbody>
-    );
-  }
-}
-
 class LibraryHeader extends React.Component {
   render() {
     return (
@@ -61,13 +17,73 @@ class LibraryHeader extends React.Component {
   }
 }
 
+class LibraryRow extends React.Component {
+  removeBook = () => {
+    this.props.removeBook(this.props.id);
+  }
+
+  render() {
+    const title = this.props.title;
+    const author = this.props.author;
+    const read = this.props.read ? "Yes" : "No";
+    const pages = this.props.pages;
+
+    return (
+      <tr>
+        <td>{title}</td>
+        <td>{author}</td>
+        <td>{pages}</td>
+        <td>{read}</td>
+        <td><button onClick={this.removeBook} href="#"><i className="fas fa-trash"></i></button></td>
+      </tr>
+    );
+  }
+}
+
+class LibraryBody extends React.Component {
+  removeBook = (id) => {
+    this.props.removeBook(id);
+  }
+
+  render() {
+    const rows = [];
+
+    if(this.props.books !== undefined && this.props.books !== null){
+      this.props.books.forEach((book, index) => {
+        rows.push(
+          <LibraryRow
+            key={index.toString()}
+            id={index.toString()}
+            removeBook={this.removeBook}
+            title={book.title}
+            author={book.author}
+            pages={book.pages} 
+            read={book.read} />
+        );
+      });
+    }
+
+    return (
+      <tbody id="items">
+        {rows}
+      </tbody>
+    );
+  }
+}
+
 class LibraryTable extends React.Component {
+  removeBook = (id) => {
+    this.props.removeBook(id);
+  }
+
   render() {
     return (
       <div className="col-8 centered">
         <table className="table">
           <LibraryHeader />
-          <LibraryBody books={this.props.books}/>
+          <LibraryBody
+            removeBook={this.removeBook} 
+            books={this.props.books} />
         </table>
       </div>
     );
@@ -91,11 +107,22 @@ class Library extends React.Component {
     })
   }
 
+  removeBook = (id) => {
+    let books = this.state.books;
+    books.splice(id, 1);
+
+    this.setState({
+      books: books
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <NewBookForm book={this.newBook}/>
-        <LibraryTable books={this.state.books}/>
+        <LibraryTable 
+          removeBook={this.removeBook}
+          books={this.state.books} />
       </div>
     );
   }
