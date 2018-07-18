@@ -11,7 +11,6 @@ class Form extends React.Component {
       pages : form.querySelector("#input-pages").value,
       read : form.querySelector("#input-read").checked
     }
-    console.log(book.read);
     this.props.addBook(book);
     e.preventDefault();
   }

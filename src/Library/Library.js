@@ -25,9 +25,10 @@ class LibraryBody extends React.Component {
     const rows = [];
 
     if(this.props.books !== undefined && this.props.books !== null){
-      this.props.books.forEach(book => {
+      this.props.books.forEach((book, index) => {
         rows.push(
           <LibraryRow
+            key={index.toString()}
             title={book.title}
             author={book.author}
             pages={book.pages} 
